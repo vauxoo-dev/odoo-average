@@ -41,7 +41,7 @@ env:
   matrix:
   - LINT_CHECK=1
   - TESTS="1"
-  - TRANSIFEX="0" INCLUDE=""
+  - TRANSIFEX="0" INCLUDE="stock,stock_account,sale_stock,stock_landed_costs"
 
 install:
   - git clone --single-branch --depth=1 https://github.com/Vauxoo/maintainer-quality-tools.git -b master ${HOME}/maintainer-quality-tools
