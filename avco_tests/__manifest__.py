@@ -14,6 +14,7 @@
     'data': [
     ],
     'demo': [
+        'demo/demo.xml',
     ],
     'qweb': [
     ],
