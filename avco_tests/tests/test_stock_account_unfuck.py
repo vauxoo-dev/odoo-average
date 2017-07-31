@@ -9,7 +9,7 @@ class TestStockCard(TransactionCase):
         super(TestStockCard, self).setUp()
         self.aml_obj = self.env['account.move.line']
         self.radiogram_id = self.env.ref(
-            'stock_account_unfuck.product_02_radiogram')
+            'avco_tests.product_02_radiogram')
         self.val_id = self.radiogram_id.\
             categ_id.property_stock_valuation_account_id
         self.std_obj = self.env['stock.transfer_details']
@@ -76,7 +76,7 @@ class TestStockCard(TransactionCase):
 
     def do_sale_return(self, record):
         xml_id = record['xml_id']
-        so_id = self.ref("stock_account_unfuck.%s" % xml_id)
+        so_id = self.ref("avco_tests.%s" % xml_id)
         so_brw = self.so_obj.browse(so_id)
         active_id = so_brw.picking_ids.filtered(
             lambda x: x.picking_type_code == 'outgoing').id
@@ -105,7 +105,7 @@ class TestStockCard(TransactionCase):
         return
 
     def do_sale(self, xml_id):
-        so_id = self.ref("stock_account_unfuck.%s" % xml_id)
+        so_id = self.ref("avco_tests.%s" % xml_id)
         so_brw = self.so_obj.browse(so_id)
         so_brw.signal_workflow('order_confirm')
         so_brw.signal_workflow('manual_invoice')
@@ -114,7 +114,7 @@ class TestStockCard(TransactionCase):
 
     def do_purchase_return(self, record):
         xml_id = record['xml_id']
-        po_id = self.ref("stock_account_unfuck.%s" % xml_id)
+        po_id = self.ref("avco_tests.%s" % xml_id)
         po_brw = self.po_obj.browse(po_id)
         active_id = po_brw.picking_ids[0].id
         ctx = {'active_id': active_id, 'active_ids': [active_id]}
@@ -138,7 +138,7 @@ class TestStockCard(TransactionCase):
         return
 
     def do_purchase(self, xml_id):
-        po_id = self.ref("stock_account_unfuck.%s" % xml_id)
+        po_id = self.ref("avco_tests.%s" % xml_id)
         po_brw = self.po_obj.browse(po_id)
         po_brw.signal_workflow('purchase_confirm')
         po_brw.signal_workflow('purchase_approve')
