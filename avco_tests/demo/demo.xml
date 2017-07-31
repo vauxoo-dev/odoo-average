@@ -24,6 +24,7 @@
             <field name="pricelist_id" ref="product.list0"/>
         </record>
         <record id="sau_po_ut_01_line_01" model="purchase.order.line">
+            <field name="product_uom" ref="product.product_uom_unit"/>
             <field name="name">sau_po_ut_01_line_01</field>
             <field name="date_planned" eval="datetime.now().strftime('%Y-%m-%d')"/>
             <field name="product_id" ref="product_02_radiogram"/>
@@ -74,6 +75,7 @@
             <field name="pricelist_id" ref="product.list0"/>
         </record>
         <record id="sau_po_ut_02_line_01" model="purchase.order.line">
+            <field name="product_uom" ref="product.product_uom_unit"/>
             <field name="name">sau_po_ut_02_line_01</field>
             <field name="date_planned" eval="datetime.now().strftime('%Y-%m-%d')"/>
             <field name="product_id" ref="product_02_radiogram"/>
@@ -109,6 +111,7 @@
             <field name="pricelist_id" ref="product.list0"/>
         </record>
         <record id="sau_po_ut_03_line_01" model="purchase.order.line">
+            <field name="product_uom" ref="product.product_uom_unit"/>
             <field name="name">sau_po_ut_03_line_01</field>
             <field name="date_planned" eval="datetime.now().strftime('%Y-%m-%d')"/>
             <field name="product_id" ref="product_02_radiogram"/>
@@ -125,6 +128,7 @@
             <field name="pricelist_id" ref="product.list0"/>
         </record>
         <record id="sau_po_ut_04_line_01" model="purchase.order.line">
+            <field name="product_uom" ref="product.product_uom_unit"/>
             <field name="name">sau_po_ut_04_line_01</field>
             <field name="date_planned" eval="datetime.now().strftime('%Y-%m-%d')"/>
             <field name="product_id" ref="product_02_radiogram"/>
@@ -150,6 +154,7 @@
             <field name="pricelist_id" ref="product.list0"/>
         </record>
         <record id="sau_po_ut_05_line_01" model="purchase.order.line">
+            <field name="product_uom" ref="product.product_uom_unit"/>
             <field name="name">sau_po_ut_05_line_01</field>
             <field name="date_planned" eval="datetime.now().strftime('%Y-%m-%d')"/>
             <field name="product_id" ref="product_02_radiogram"/>
