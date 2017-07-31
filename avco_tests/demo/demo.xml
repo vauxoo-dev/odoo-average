@@ -20,8 +20,6 @@
         <record id="sau_po_ut_01" model="purchase.order">
             <field name="name">sau_po_ut_01</field>
             <field name="partner_id" ref="base.res_partner_2"/>
-            <field name="location_id" ref="stock.stock_location_stock"/>
-            <field name="pricelist_id" ref="product.list0"/>
         </record>
         <record id="sau_po_ut_01_line_01" model="purchase.order.line">
             <field name="product_uom" ref="product.product_uom_unit"/>
@@ -40,7 +38,6 @@
             <field name="partner_id" ref="base.res_partner_2"/>
             <field name="currency_id" ref="base.EUR"/>
             <field name="pricelist_id" ref="product.list0"/>
-            <field name="order_policy">picking</field>
         </record>
         <record id="sau_so_ut_01_line_01" model="sale.order.line">
             <field name="name">sau_so_ut_01_line_01</field>
@@ -57,7 +54,6 @@
             <field name="partner_id" ref="base.res_partner_2"/>
             <field name="currency_id" ref="base.EUR"/>
             <field name="pricelist_id" ref="product.list0"/>
-            <field name="order_policy">picking</field>
         </record>
         <record id="sau_so_ut_02_line_01" model="sale.order.line">
             <field name="name">sau_so_ut_02_line_01</field>
@@ -71,8 +67,6 @@
         <record id="sau_po_ut_02" model="purchase.order">
             <field name="name">sau_po_ut_02</field>
             <field name="partner_id" ref="base.res_partner_2"/>
-            <field name="location_id" ref="stock.stock_location_stock"/>
-            <field name="pricelist_id" ref="product.list0"/>
         </record>
         <record id="sau_po_ut_02_line_01" model="purchase.order.line">
             <field name="product_uom" ref="product.product_uom_unit"/>
@@ -91,7 +85,6 @@
             <field name="partner_id" ref="base.res_partner_2"/>
             <field name="currency_id" ref="base.EUR"/>
             <field name="pricelist_id" ref="product.list0"/>
-            <field name="order_policy">picking</field>
         </record>
         <record id="sau_so_ut_03_line_01" model="sale.order.line">
             <field name="name">sau_so_ut_03_line_01</field>
@@ -107,8 +100,6 @@
         <record id="sau_po_ut_03" model="purchase.order">
             <field name="name">sau_po_ut_03</field>
             <field name="partner_id" ref="base.res_partner_2"/>
-            <field name="location_id" ref="stock.stock_location_stock"/>
-            <field name="pricelist_id" ref="product.list0"/>
         </record>
         <record id="sau_po_ut_03_line_01" model="purchase.order.line">
             <field name="product_uom" ref="product.product_uom_unit"/>
@@ -124,8 +115,6 @@
         <record id="sau_po_ut_04" model="purchase.order">
             <field name="name">sau_po_ut_04</field>
             <field name="partner_id" ref="base.res_partner_2"/>
-            <field name="location_id" ref="stock.stock_location_stock"/>
-            <field name="pricelist_id" ref="product.list0"/>
         </record>
         <record id="sau_po_ut_04_line_01" model="purchase.order.line">
             <field name="product_uom" ref="product.product_uom_unit"/>
@@ -150,8 +139,6 @@
         <record id="sau_po_ut_05" model="purchase.order">
             <field name="name">sau_po_ut_05</field>
             <field name="partner_id" ref="base.res_partner_2"/>
-            <field name="location_id" ref="stock.stock_location_stock"/>
-            <field name="pricelist_id" ref="product.list0"/>
         </record>
         <record id="sau_po_ut_05_line_01" model="purchase.order.line">
             <field name="product_uom" ref="product.product_uom_unit"/>
@@ -172,7 +159,6 @@
             <field name="partner_id" ref="base.res_partner_2"/>
             <field name="currency_id" ref="base.EUR"/>
             <field name="pricelist_id" ref="product.list0"/>
-            <field name="order_policy">picking</field>
         </record>
         <record id="sau_so_ut_04_line_01" model="sale.order.line">
             <field name="name">sau_so_ut_04_line_01</field>
