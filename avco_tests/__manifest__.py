@@ -14,6 +14,7 @@
     'data': [
     ],
     'demo': [
+        '../account/test/account_minimal_test.xml',
         'demo/demo.xml',
     ],
     'qweb': [
