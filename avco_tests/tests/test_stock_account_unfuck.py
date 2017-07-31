@@ -12,7 +12,6 @@ class TestStockCard(TransactionCase):
             'avco_tests.product_02_radiogram')
         self.val_id = self.radiogram_id.\
             categ_id.property_stock_valuation_account_id
-        self.std_obj = self.env['stock.transfer_details']
         self.srp_obj = self.env['stock.return.picking']
         self.sp_obj = self.env['stock.picking']
         self.so_obj = self.env['sale.order']
@@ -70,8 +69,7 @@ class TestStockCard(TransactionCase):
         sp_brws.action_assign()
         while sp_brws.filtered(lambda x: x.state == 'assigned'):
             sp_brw = sp_brws.filtered(lambda x: x.state == 'assigned')
-            std_brw = self.std_obj.create({'picking_id': sp_brw.id})
-            std_brw.do_detailed_transfer()
+            sp_brw.action_done()
         return
 
     def do_sale_return(self, record):
@@ -140,8 +138,7 @@ class TestStockCard(TransactionCase):
     def do_purchase(self, xml_id):
         po_id = self.ref("avco_tests.%s" % xml_id)
         po_brw = self.po_obj.browse(po_id)
-        po_brw.signal_workflow('purchase_confirm')
-        po_brw.signal_workflow('purchase_approve')
+        po_brw.button_confirm()
         self.process_picking(po_brw.picking_ids)
         return
 
