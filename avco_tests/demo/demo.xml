@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <openerp>
     <data noupdate="0">
-        <record id="base.res_partner_23" model="res.partner">
+        <record id="base.res_partner_2" model="res.partner">
             <field name="credit_limit">1000000000</field>
         </record>
     </data>
@@ -19,7 +19,7 @@
         <!-- 01 - Purchase Order Order 01 -->
         <record id="sau_po_ut_01" model="purchase.order">
             <field name="name">sau_po_ut_01</field>
-            <field name="partner_id" ref="base.res_partner_23"/>
+            <field name="partner_id" ref="base.res_partner_2"/>
             <field name="location_id" ref="stock.stock_location_stock"/>
             <field name="pricelist_id" ref="purchase.list0"/>
         </record>
@@ -36,7 +36,7 @@
         <record id="sau_so_ut_01" model="sale.order">
             <field name="name">sau_so_ut_01</field>
             <field name="date_order" eval="datetime.now().strftime('%Y-%m-%d')" />
-            <field name="partner_id" ref="base.res_partner_23"/>
+            <field name="partner_id" ref="base.res_partner_2"/>
             <field name="currency_id" ref="base.EUR"/>
             <field name="pricelist_id" ref="product.list0"/>
             <field name="order_policy">picking</field>
@@ -53,7 +53,7 @@
         <record id="sau_so_ut_02" model="sale.order">
             <field name="name">sau_so_ut_02</field>
             <field name="date_order" eval="datetime.now().strftime('%Y-%m-%d')" />
-            <field name="partner_id" ref="base.res_partner_23"/>
+            <field name="partner_id" ref="base.res_partner_2"/>
             <field name="currency_id" ref="base.EUR"/>
             <field name="pricelist_id" ref="product.list0"/>
             <field name="order_policy">picking</field>
@@ -69,7 +69,7 @@
         <!-- 04 - Purchase Order Order 02 -->
         <record id="sau_po_ut_02" model="purchase.order">
             <field name="name">sau_po_ut_02</field>
-            <field name="partner_id" ref="base.res_partner_23"/>
+            <field name="partner_id" ref="base.res_partner_2"/>
             <field name="location_id" ref="stock.stock_location_stock"/>
             <field name="pricelist_id" ref="purchase.list0"/>
         </record>
@@ -86,7 +86,7 @@
         <record id="sau_so_ut_03" model="sale.order">
             <field name="name">sau_so_ut_03</field>
             <field name="date_order" eval="datetime.now().strftime('%Y-%m-%d')" />
-            <field name="partner_id" ref="base.res_partner_23"/>
+            <field name="partner_id" ref="base.res_partner_2"/>
             <field name="currency_id" ref="base.EUR"/>
             <field name="pricelist_id" ref="product.list0"/>
             <field name="order_policy">picking</field>
@@ -104,7 +104,7 @@
         <!-- 07 - Purchase Order 03 -->
         <record id="sau_po_ut_03" model="purchase.order">
             <field name="name">sau_po_ut_03</field>
-            <field name="partner_id" ref="base.res_partner_23"/>
+            <field name="partner_id" ref="base.res_partner_2"/>
             <field name="location_id" ref="stock.stock_location_stock"/>
             <field name="pricelist_id" ref="purchase.list0"/>
         </record>
@@ -120,7 +120,7 @@
         <!-- 08 - Purchase Order 04 -->
         <record id="sau_po_ut_04" model="purchase.order">
             <field name="name">sau_po_ut_04</field>
-            <field name="partner_id" ref="base.res_partner_23"/>
+            <field name="partner_id" ref="base.res_partner_2"/>
             <field name="location_id" ref="stock.stock_location_stock"/>
             <field name="pricelist_id" ref="purchase.list0"/>
         </record>
@@ -145,7 +145,7 @@
         <!-- 13 - Purchase Order 05 -->
         <record id="sau_po_ut_05" model="purchase.order">
             <field name="name">sau_po_ut_05</field>
-            <field name="partner_id" ref="base.res_partner_23"/>
+            <field name="partner_id" ref="base.res_partner_2"/>
             <field name="location_id" ref="stock.stock_location_stock"/>
             <field name="pricelist_id" ref="purchase.list0"/>
         </record>
@@ -164,7 +164,7 @@
         <record id="sau_so_ut_04" model="sale.order">
             <field name="name">sau_so_ut_04</field>
             <field name="date_order" eval="datetime.now().strftime('%Y-%m-%d')" />
-            <field name="partner_id" ref="base.res_partner_23"/>
+            <field name="partner_id" ref="base.res_partner_2"/>
             <field name="currency_id" ref="base.EUR"/>
             <field name="pricelist_id" ref="product.list0"/>
             <field name="order_policy">picking</field>
