@@ -69,7 +69,10 @@ class TestStockCard(TransactionCase):
         sp_brws.action_assign()
         while sp_brws.filtered(lambda x: x.state == 'assigned'):
             sp_brw = sp_brws.filtered(lambda x: x.state == 'assigned')
-            sp_brw.action_done()
+            res_dict = sp_brw.button_validate()
+            wizard = self.env[(res_dict.get('res_model'))].browse(
+                res_dict.get('res_id'))
+            wizard.process()
         return
 
     def do_sale_return(self, record):
@@ -78,35 +81,21 @@ class TestStockCard(TransactionCase):
         so_brw = self.so_obj.browse(so_id)
         active_id = so_brw.picking_ids.filtered(
             lambda x: x.picking_type_code == 'outgoing').id
-        src_pck = so_brw.picking_ids.filtered(
-            lambda x: x.location_id.name == 'Stock')
-        src_loc_id = src_pck.location_id.id
         ctx = {'active_id': active_id, 'active_ids': [active_id]}
-        field_names = ['product_return_moves', 'move_dest_exists']
-        res = self.srp_obj.with_context(ctx).default_get(field_names)
-        srp_brw = self.srp_obj.create({'invoice_state': 'none'})
-        values = {
-            'move_dest_exists': res['move_dest_exists'],
-            'product_return_moves': [
-                (0, 0, dict(
-                    line,
-                    wizard_id=srp_brw.id,
-                    quantity=record['qty-ret']))
-                for line in res['product_return_moves']]
-        }
-        srp_brw.write(values)
-        sp_id = srp_brw.with_context(ctx)._create_returns()[0]
-        sp_brw = self.sp_obj.browse(sp_id)
-        sp_brw.move_lines.write({'location_dest_id': src_loc_id})
-
-        self.process_picking(sp_brw)
+        stock_return_picking = self.srp_obj.with_context(ctx).create({})
+        stock_return_picking.product_return_moves.quantity = record['qty-ret']
+        stock_return_picking_action = stock_return_picking.create_returns()
+        return_pick = self.env['stock.picking'].browse(
+            stock_return_picking_action['res_id'])
+        return_pick.move_lines[0].move_line_ids[0].qty_done = record['qty-ret']
+        return_pick.action_done()
+        # self.process_picking(sp_brw)
         return
 
     def do_sale(self, xml_id):
         so_id = self.ref("avco_tests.%s" % xml_id)
         so_brw = self.so_obj.browse(so_id)
-        so_brw.signal_workflow('order_confirm')
-        so_brw.signal_workflow('manual_invoice')
+        so_brw.action_confirm()
         self.process_picking(so_brw.picking_ids)
         return
 
@@ -116,23 +105,16 @@ class TestStockCard(TransactionCase):
         po_brw = self.po_obj.browse(po_id)
         active_id = po_brw.picking_ids[0].id
         ctx = {'active_id': active_id, 'active_ids': [active_id]}
-        field_names = ['product_return_moves', 'move_dest_exists']
-        res = self.srp_obj.with_context(ctx).default_get(field_names)
-        srp_brw = self.srp_obj.create({'invoice_state': 'none'})
-        values = {
-            'move_dest_exists': res['move_dest_exists'],
-            'product_return_moves': [
-                (0, 0, dict(
-                    line,
-                    wizard_id=srp_brw.id,
-                    quantity=record['qty-ret']))
-                for line in res['product_return_moves']]
-        }
-        srp_brw.write(values)
-        sp_id = srp_brw.with_context(ctx)._create_returns()[0]
-        sp_brw = self.sp_obj.browse(sp_id)
 
-        self.process_picking(sp_brw)
+        stock_return_picking = self.srp_obj.with_context(ctx).create({})
+        stock_return_picking.product_return_moves.quantity = record['qty-ret']
+        stock_return_picking_action = stock_return_picking.create_returns()
+        return_pick = self.env['stock.picking'].browse(
+            stock_return_picking_action['res_id'])
+        return_pick.move_lines[0].move_line_ids[0].qty_done = record['qty-ret']
+        return_pick.do_transfer()
+
+        # self.process_picking(sp_brw)
         return
 
     def do_purchase(self, xml_id):
@@ -153,22 +135,29 @@ class TestStockCard(TransactionCase):
             self.do_purchase_return(record)
         return
 
-    def test_00_average_computation(self):
+    def test_10_average_qty_flow(self):
         for index in range(1, 16):
             res = self.res["%02d" % index]
             self.return_transaction(res)
 
-            self.assertEqual(
-                round(self.radiogram_id.standard_price, 2), res["avg"],
-                "operation: %02d - expected average - cost price is %s" % (
-                    index, res["avg"]))
             self.assertEqual(
                 round(self.radiogram_id.qty_available, 2), res["qty"],
                 "Operation: %02d - Qty Available should be %s" % (
                     index, res["qty"]))
         return
 
-    def test_01_accounting_booking(self):
+    def test_20_average_computation(self):
+        for index in range(1, 16):
+            res = self.res["%02d" % index]
+            self.return_transaction(res)
+
+            self.assertEqual(
+                round(self.radiogram_id.average_price, 2), res["avg"],
+                "operation: %02d - expected average - cost price is %s" % (
+                    index, res["avg"]))
+        return
+
+    def test_30_accounting_booking(self):
         for index in range(1, 16):
             res = self.res["%02d" % index]
             self.return_transaction(res)
