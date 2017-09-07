@@ -152,7 +152,7 @@ class TestStockCard(TransactionCase):
             self.return_transaction(res)
 
             self.assertEqual(
-                round(self.radiogram_id.average_price, 2), res["avg"],
+                round(self.radiogram_id.standard_price, 2), res["avg"],
                 "operation: %02d - expected average - cost price is %s" % (
                     index, res["avg"]))
         return
