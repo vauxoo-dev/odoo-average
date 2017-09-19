@@ -11,6 +11,7 @@
             <field name="property_valuation">real_time</field>
             <field name="property_cost_method">average</field>
             <field name="name">Perpetual - Average</field>
+            <field name="property_stock_journal" ref="avco_tests.miscellaneous_journal"/>
             <field name="property_stock_account_input_categ_id" ref="avco_tests.o_expense"/>
             <field name="property_stock_account_output_categ_id" ref="avco_tests.o_income"/>
             <field name="property_account_creditor_price_difference_categ" ref="avco_tests.income_fx_income"/>
